@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/about">About</router-link>
-      <router-link to="/doktori">Doktori</router-link>
-      <router-link to="/dodajDoktora">Dodaj doktora</router-link>
-    </div>
+    <NavBar/>
     <router-view/>
   </div>
 </template>
+
+<script>
+import NavBar from './views/NavBar'
+export default {
+    name:'App',
+    components:{
+        NavBar
+    }
+}
+</script>
+
 
 <style>
 #app {

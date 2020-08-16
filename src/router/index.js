@@ -5,13 +5,24 @@ import Register from '../views/Register.vue'
 import Doktori from '../views/Doktori.vue'
 import DodajDoktora from '../views/DodajDoktora.vue'
 import Doktor from '../views/Doktor.vue'
+import Profile from '../views/Profile.vue'
 
 
+function requireAuth(to,from,next){
+  if(localStorage.getItem('usertoken')==null){
+    next({
+      path:"/login"
+    })
+  }else{
+    next()
+  }
+
+}
 Vue.use(VueRouter)
 
   const routes = [
   {
-    path: '/about',
+    path: '/',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -26,7 +37,7 @@ Vue.use(VueRouter)
   {
     path: '/Doktori',
     name: 'Doktori',
-    component:Doktori,
+    component:Doktori
   },
   {
     path: '/Doktor/:id',
@@ -42,6 +53,12 @@ Vue.use(VueRouter)
     path: '/DodajDoktora',
     name: 'DodajDoktora',
     component:DodajDoktora,
+    beforeEnter:requireAuth,  
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component:Profile,
   },
 ]
 
@@ -50,5 +67,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+
 
 export default router

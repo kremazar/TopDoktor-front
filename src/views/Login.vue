@@ -18,7 +18,11 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-          <div class="error" v-if="error">{{error.message}} </div>
+        
+          <br><br>
+            <p class="btn btn-warning" v-for="error in errors" v-bind:key="error.id">{{ error }}</p>
+          
+
         </div>
         <div class="col-sm-3"></div>
       </div>
@@ -27,18 +31,27 @@
 </template>
 
 <script>
+
 export default {
   name:'login',
   data(){
     return{
       email:'',
       password:'',
-      error:''
+      errors: [],
     }
   },
   methods:{
     login:function(){
-    const path = 'http://localhost:5000/login'
+      this.errors = [];
+
+      if (!this.email) {
+        this.errors.push('Email required');
+      }
+      else if (!this.password) {
+        this.errors.push('Password required');
+      }else{
+        const path = 'http://localhost:5000/login'
    
          this.axios.post(path,{
             email:this.email,
@@ -55,17 +68,23 @@ export default {
         }
         )
         .then((res) => {
-          if (res.data==="OK"){
-            this.$router.push({name:"About"})
-          }else{
-            console.log("Wrong email or password")
-          }
+          localStorage.setItem('usertoken',res.data.token)
+          this.email=''
+          this.password=''
+          this.$router.push({name:'Doktori'})
         })
         .catch((error) => {
-          // eslint-disable-next-line
+          error="Kriva lozinka ili email !!!"
+          this.errors.push(error)
           console.error(error);
-        });     
-    }
+        })
+        .then(() =>{
+         
+        })
+           
+      }
+    
+    },   
   }
 }
 </script>

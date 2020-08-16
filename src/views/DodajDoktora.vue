@@ -1,5 +1,5 @@
 <template>
-  <div class="login">
+  <div class="dodaj_doktora">
     <h1>Dodaj doktora</h1>
     <div class="container">
       <div class="row">
