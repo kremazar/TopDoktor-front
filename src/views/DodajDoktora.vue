@@ -7,7 +7,7 @@
 
         </div>
         <div class="col-sm-6">
-          <form @submit.prevent="login">
+          <form @submit.prevent="dodajDoktora">
             <div class="form-group">
               <label for="ime">Ime:</label>
               <input type="text" class="form-control" id="ime" v-model="ime" placeholder="ime" />
@@ -47,8 +47,8 @@ export default {
     }
   },
   methods:{
-    login:function(){
-    const path = 'http://localhost:5000/dodajDoktora'
+    dodajDoktora:function(){
+    const path = 'https://webdoktor.herokuapp.com/dodajDoktora'
    
          this.axios.post(path,{
             ime:this.ime,

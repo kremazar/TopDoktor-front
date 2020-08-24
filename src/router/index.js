@@ -37,12 +37,14 @@ Vue.use(VueRouter)
   {
     path: '/Doktori',
     name: 'Doktori',
-    component:Doktori
+    component:Doktori,
+    beforeEnter:requireAuth, 
   },
   {
     path: '/Doktor/:id',
     name: 'Doktor',
     component:Doktor,
+    beforeEnter:requireAuth, 
   },
   {
     path: '/register',
@@ -59,6 +61,7 @@ Vue.use(VueRouter)
     path: '/profile',
     name: 'profile',
     component:Profile,
+    beforeEnter:requireAuth, 
   },
 ]
 
