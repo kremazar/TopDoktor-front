@@ -116,8 +116,8 @@ export default {
     },
   },
   created() {
-    const path = "http://localhost:5000/doktor/" + this.id;
-    const path2 = "http://localhost:5000/ocjena";
+    const path = "https://webdoktor.herokuapp.com/doktor/" + this.id;
+    const path2 = "https://webdoktor.herokuapp.com/ocjena";
     axios
       .get(path)
       .then((res) => {
