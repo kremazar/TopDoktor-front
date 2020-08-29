@@ -19,7 +19,7 @@
               <router-link to="/doktori">Doktori</router-link>
             </a>
           </li>
-          <li v-if="islogged" class="nav-item">
+          <li v-if="islogged && admin" class="nav-item">
             <a class="nav-link">
               <router-link to="/dodajDoktora">Dodaj doktora</router-link>
             </a>
@@ -44,7 +44,7 @@
               <router-link to="/najbolji">Najbolji doktori</router-link>
             </a>
           </li>
-          <li v-if="islogged" class="nav-item active">
+          <li v-if="islogged && admin" class="nav-item active">
             <a class="nav-link">
               <router-link to="/DodajClanak">Dodaj clanak</router-link>
             </a>
@@ -70,6 +70,7 @@ export default {
       auth: "",
       user: "",
       islogged: localStorage.getItem("usertoken"),
+      admin: "admin@unipu.hr",
     };
   },
   methods: {
