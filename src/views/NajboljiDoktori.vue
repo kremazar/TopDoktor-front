@@ -33,6 +33,7 @@ export default {
 
       .then((res) => {
         this.najbolji = res.data;
+        console.log(res.data);
       })
       .catch((error) => {
         console.error(error);
