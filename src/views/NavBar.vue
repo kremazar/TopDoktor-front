@@ -64,10 +64,10 @@
 </template>
 
 <script>
-const token = localStorage.usertoken;
-const decoded = jwtDecode(token);
 export default {
   data() {
+    const token = localStorage.usertoken;
+    const decoded = jwtDecode(token);
     return {
       auth: "",
       user: "",
