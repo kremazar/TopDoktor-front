@@ -1,5 +1,6 @@
-<template></template>
-
+<template>
+  <div>cudo</div>
+</template>
 <script>
 export default {
   methods: {},
