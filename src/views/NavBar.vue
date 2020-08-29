@@ -14,27 +14,6 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a v-if="islogged" class="nav-link">
-              <router-link to="/doktori">Doktori</router-link>
-            </a>
-          </li>
-
-          <li v-if="!islogged" class="nav-item active">
-            <a class="nav-link">
-              <router-link to="/login">Login</router-link>
-            </a>
-          </li>
-          <li v-if="islogged" class="nav-item active">
-            <a class="nav-link">
-              <router-link to="/profile">Profile</router-link>
-            </a>
-          </li>
-          <li v-if="islogged" class="nav-item active">
-            <a class="nav-link">
-              <router-link to="/najbolji">Najbolji doktori</router-link>
-            </a>
-          </li>
           <li v-if="islogged && admin" class="nav-item active">
             <a class="nav-link">
               <router-link to="/DodajClanak">Dodaj clanak</router-link>
