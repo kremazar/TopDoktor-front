@@ -19,7 +19,7 @@
               <router-link to="/doktori">Doktori</router-link>
             </a>
           </li>
-          <li v-if="islogged && admin" class="nav-item">
+          <li v-if="islogged !== null && admin !== null" class="nav-item">
             <a class="nav-link">
               <router-link to="/dodajDoktora">Dodaj doktora</router-link>
             </a>
