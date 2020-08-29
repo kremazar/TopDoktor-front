@@ -19,16 +19,7 @@
               <router-link to="/doktori">Doktori</router-link>
             </a>
           </li>
-          <li v-if="islogged !== null && admin !== null" class="nav-item">
-            <a class="nav-link">
-              <router-link to="/dodajDoktora">Dodaj doktora</router-link>
-            </a>
-          </li>
-          <li v-if="!islogged" class="nav-item active">
-            <a class="nav-link">
-              <router-link to="/register">Register</router-link>
-            </a>
-          </li>
+
           <li v-if="!islogged" class="nav-item active">
             <a class="nav-link">
               <router-link to="/login">Login</router-link>
