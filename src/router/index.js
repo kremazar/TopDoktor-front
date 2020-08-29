@@ -9,6 +9,7 @@ import Profile from "../views/Profile.vue";
 import NajboljiDoktori from "../views/NajboljiDoktori.vue";
 import DodajClanak from "../views/DodajClanak.vue";
 import Clanak from "../views/Clanak.vue";
+import Chat from "../views/Chat.vue";
 
 function requireAuth(to, from, next) {
   if (localStorage.getItem("usertoken") == null) {
@@ -81,6 +82,12 @@ const routes = [
     path: "/clanak",
     name: "clanak",
     component: Clanak,
+    beforeEnter: requireAuth,
+  },
+  {
+    path: "/chat",
+    name: "chat",
+    component: Chat,
     beforeEnter: requireAuth,
   },
 ];
