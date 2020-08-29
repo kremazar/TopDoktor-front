@@ -25,7 +25,7 @@
               <input
                 type="password"
                 class="form-control"
-                v-model="user.password2"
+                v-model="password2"
                 placeholder="Confirm Password"
               />
             </div>
@@ -42,60 +42,32 @@
 </template>
 
 <script>
+import { Registracija } from "@/services";
 export default {
   name: "signup",
   data() {
     return {
       errors: [],
+      password2: "",
       user: {
         email: "",
         password: "",
-        password2: "",
       },
     };
   },
   methods: {
     post: function () {
-      if (this.user.password != this.user.password2) {
+      if (this.user.password != this.password2) {
         this.errors.push("Lozinke nisu jednake");
       } else if (!this.user.email) {
         this.errors.push("Email required");
       } else if (!this.user.password) {
         this.errors.push("Password required");
       } else {
-        const path = "https://webdoktor.herokuapp.com/register";
-        let currentObj = this;
-        this.axios
-          .post(
-            path,
-            {
-              email: this.user.email,
-              password: this.user.password,
-            },
-            {
-              headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods":
-                  "POST, GET, PUT, OPTIONS, DELETE",
-                "Access-Control-Allow-Headers":
-                  "Access-Control-Allow-Methods, Access-Control-Allow-Origin, Origin, Accept, Content-Type",
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          )
-          .then((res) => {
-            console.log(res.data);
-            currentObj.output = res.data;
-          })
-          .catch((error) => {
-            // eslint-disable-next-line
-            this.errors.push(error);
-            console.error(error);
-          })
-          .then(() => {
-            this.$router.push("/login");
-          });
+        /* const path = "https://webdoktor.herokuapp.com/register"; */
+        Registracija.getAll(this.user);
+
+        this.$router.push("/login");
       }
     },
   },

@@ -1,8 +1,13 @@
 <template>
   <div class="NavBar">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand">
-        <router-link to="/"><img src="https://www.epicentrofestival.com/wp-content/uploads/2020/01/epicentrofestival-Of-Doctors-Picture-Free-Download-Clip-Art-On-Doctor-Cartoon-tzv3h1fimy-720x1070.jpg" style="height:100px;weight:100px"/></router-link>
+        <router-link to="/">
+          <img
+            src="https://www.epicentrofestival.com/wp-content/uploads/2020/01/epicentrofestival-Of-Doctors-Picture-Free-Download-Clip-Art-On-Doctor-Cartoon-tzv3h1fimy-720x1070.jpg"
+            style="height:100px;weight:100px"
+          />
+        </router-link>
       </a>
       <button class="navbar-toggler" type="button">
         <span class="navbar-toggler-icon"></span>
@@ -10,50 +15,71 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link"><router-link to="/doktori">Doktori</router-link></a>
+            <a v-if="islogged" class="nav-link">
+              <router-link to="/doktori">Doktori</router-link>
+            </a>
           </li>
           <li v-if="islogged" class="nav-item">
-            <a class="nav-link" > <router-link to="/dodajDoktora">Dodaj doktora</router-link></a>
-          </li>
-          <li  v-if="!islogged" class="nav-item active">
-            <a class="nav-link"><router-link to="/register">Register</router-link></a>
+            <a class="nav-link">
+              <router-link to="/dodajDoktora">Dodaj doktora</router-link>
+            </a>
           </li>
           <li v-if="!islogged" class="nav-item active">
-            <a class="nav-link"><router-link to="/login">Login</router-link></a>
+            <a class="nav-link">
+              <router-link to="/register">Register</router-link>
+            </a>
+          </li>
+          <li v-if="!islogged" class="nav-item active">
+            <a class="nav-link">
+              <router-link to="/login">Login</router-link>
+            </a>
           </li>
           <li v-if="islogged" class="nav-item active">
-            <a class="nav-link"><router-link to="/profile">Profile</router-link></a>
+            <a class="nav-link">
+              <router-link to="/profile">Profile</router-link>
+            </a>
           </li>
           <li v-if="islogged" class="nav-item active">
-            <a class="nav-link" href="" v-on:click="logout">Logout</a>
+            <a class="nav-link">
+              <router-link to="/najbolji">Najbolji doktori</router-link>
+            </a>
+          </li>
+          <li v-if="islogged" class="nav-item active">
+            <a class="nav-link">
+              <router-link to="/DodajClanak">Dodaj clanak</router-link>
+            </a>
+          </li>
+          <li v-if="islogged" class="nav-item active">
+            <a class="nav-link">
+              <router-link to="/clanak">Članci</router-link>
+            </a>
+          </li>
+          <li v-if="islogged" class="nav-item active">
+            <a class="nav-link" href v-on:click="logout">Logout</a>
           </li>
         </ul>
       </div>
-  </nav>
+    </nav>
   </div>
 </template>
 
 <script>
-
-
-export default{
-    data(){
-        return{
-            auth:'',
-            user:'',
-            islogged:localStorage.getItem('usertoken')
-        }
+export default {
+  data() {
+    return {
+      auth: "",
+      user: "",
+      islogged: localStorage.getItem("usertoken"),
+    };
+  },
+  methods: {
+    logout() {
+      localStorage.removeItem("usertoken");
+      this.$router.push("/login");
     },
-    methods:{
-        logout(){
-            localStorage.removeItem('usertoken')
-            this.$router.push('/login')
-        }
-    },
-    
-}
+  },
+};
 </script>
 
 <style>
-
 </style>

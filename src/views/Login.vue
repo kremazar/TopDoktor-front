@@ -12,13 +12,18 @@
                 type="email"
                 class="form-control"
                 id="email"
-                v-model="email"
+                v-model="user.email"
                 placeholder="Enter email"
               />
             </div>
             <div class="form-group">
               <label for="password">Password:</label>
-              <input type="password" class="form-control" v-model="password" placeholder="Password" />
+              <input
+                type="password"
+                class="form-control"
+                v-model="user.password"
+                placeholder="Password"
+              />
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
@@ -34,12 +39,15 @@
 </template>
 
 <script>
+import { Login } from "@/services";
 export default {
   name: "login",
   data() {
     return {
-      email: "",
-      password: "",
+      user: {
+        email: "",
+        password: "",
+      },
       errors: [],
     };
   },
@@ -47,32 +55,13 @@ export default {
     login: function () {
       this.errors = [];
 
-      if (!this.email) {
+      if (!this.user.email) {
         this.errors.push("Email required");
-      } else if (!this.password) {
+      } else if (!this.user.password) {
         this.errors.push("Password required");
       } else {
-        const path = "https://webdoktor.herokuapp.com/login";
-
-        this.axios
-          .post(
-            path,
-            {
-              email: this.email,
-              password: this.password,
-            },
-            {
-              headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods":
-                  "POST, GET, PUT, OPTIONS, DELETE",
-                "Access-Control-Allow-Headers":
-                  "Access-Control-Allow-Methods, Access-Control-Allow-Origin, Origin, Accept, Content-Type",
-                "Content-Type": "application/json",
-                Accept: "application/json",
-              },
-            }
-          )
+        /* const path = "https://webdoktor.herokuapp.com/login"; */
+        Login.getAll(this.user)
           .then((res) => {
             localStorage.setItem("usertoken", res.data.token);
             this.id = "";

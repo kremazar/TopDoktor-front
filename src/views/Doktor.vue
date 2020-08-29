@@ -24,14 +24,14 @@
                 max="5"
                 class="form-control"
                 placeholder="ocjena"
-                v-model="ocjena"
+                v-model="sve.ocjena"
               />
             </div>
             <div class="form-group">
               <label for="komentar">Komentar:</label>
-              <input type="text" class="form-control" placeholder="komentar" v-model="komentar" />
-              <input type="hidden" class="form-control" placeholder="user_id" v-model="user_id" />
-              <input type="hidden" class="form-control" placeholder="id" v-model="id" />
+              <input type="text" class="form-control" placeholder="komentar" v-model="sve.komentar" />
+              <input type="hidden" class="form-control" placeholder="user_id" v-model="sve.user_id" />
+              <input type="hidden" class="form-control" placeholder="id" v-model="sve.id" />
             </div>
             <button v-on:click.prevent="ocjeni" class="btn btn-primary">Ocjeni</button>
           </form>
@@ -44,7 +44,7 @@
       <h1>Sve ocjene doktora:</h1>
       <div class="row">
         <div v-for="item in ocjene" :key="item.id" class="col-lg-7 mx-auto">
-          <div v-if="item.doktor_id==id">
+          <div v-if="item.doktor_id==sve.doktor_id">
             <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
               <div class="blockquote-custom-icon bg-info shadow-sm">
                 <i class="fa fa-quote-left text-white"></i>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import { Ocjeni, Ocjene, Doktor } from "@/services";
 import jwtDecode from "jwt-decode";
 export default {
   name: "Doktori",
@@ -70,70 +70,40 @@ export default {
     const token = localStorage.usertoken;
     const decoded = jwtDecode(token);
     return {
-      id: this.$route.params.id,
+      sve: {
+        doktor_id: this.$route.params.id,
+        komentar: "",
+        ocjena: "",
+        user_id: decoded.id,
+      },
       doktor: {},
       ocjene: {},
-      komentar: "",
-      ocjena: "",
-      user_id: decoded.id,
     };
   },
   methods: {
     ocjeni: function () {
-      const path = "https://webdoktor.herokuapp.com/ocjeni";
-      let currentObj = this;
-      this.axios
-        .post(
-          path,
-          {
-            ocjena: this.ocjena,
-            komentar: this.komentar,
-            user_id: this.user_id,
-            doktor_id: this.id,
-          },
-          {
-            headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE",
-              "Access-Control-Allow-Headers":
-                "Access-Control-Allow-Methods, Access-Control-Allow-Origin, Origin, Accept, Content-Type",
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res.data);
-          currentObj.output = res.data;
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-        })
-        .then(() => {
-          this.$router.push({ name: "Doktori" });
-        });
+      Ocjeni.getAll(this.sve).then(() => {
+        location.reload();
+      });
     },
   },
   created() {
-    const path = "https://webdoktor.herokuapp.com/doktor/" + this.id;
-    const path2 = "https://webdoktor.herokuapp.com/ocjena";
-    axios
-      .get(path)
+    /* const path = "https://webdoktor.herokuapp.com/doktor/" + this.id;
+    const path2 = "https://webdoktor.herokuapp.com/ocjena"; */
+    Doktor.getAll(this.sve.doktor_id)
+
       .then((res) => {
-        this.doktor = res.data.data;
+        this.doktor = res.data;
       })
       .catch((error) => {
-        // eslint-disable-next-line
         console.error(error);
       });
-    axios
-      .get(path2)
+
+    Ocjene.getAll()
       .then((res) => {
-        this.ocjene = res.data.data;
+        this.ocjene = res.data;
       })
       .catch((error) => {
-        // eslint-disable-next-line
         console.error(error);
       });
   },

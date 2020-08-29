@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import jwtDecode from "jwt-decode";
+import { Doktori, deleteDoctor } from "@/services";
 export default {
   name: "Doktori",
   data() {
@@ -37,15 +37,14 @@ export default {
   },
   methods: {
     deleteDoc(id) {
-      const path = `https://webdoktor.herokuapp.com/delete/${id}`;
-      axios
-        .delete(path)
+      /* const path = `https://webdoktor.herokuapp.com/delete/${id}`; */
+      deleteDoctor
+        .getAll(id)
         .then(() => {
           this.message = "Book removed!";
           this.$router.go({ name: "Doktori" });
         })
         .catch((error) => {
-          // eslint-disable-next-line
           console.error(error);
         });
     },
@@ -54,16 +53,10 @@ export default {
     },
   },
   created() {
-    const path = "https://webdoktor.herokuapp.com/doktori";
-
-    axios
-      .get(path)
-      .then((res) => {
-        this.doktori = res.data.data;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    /* const path = "https://webdoktor.herokuapp.com/doktori"; */
+    Doktori.getAll().then((data) => {
+      this.doktori = data.data;
+    });
   },
   computed: {
     search: function () {
