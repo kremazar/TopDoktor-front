@@ -61,12 +61,6 @@ const routes = [
     beforeEnter: requireAuth,
   },
   {
-    path: "/profile",
-    name: "profile",
-    component: Profile,
-    beforeEnter: requireAuth,
-  },
-  {
     path: "/najbolji",
     name: "najbolji",
     component: NajboljiDoktori,
@@ -82,12 +76,6 @@ const routes = [
     path: "/clanak",
     name: "clanak",
     component: Clanak,
-    beforeEnter: requireAuth,
-  },
-  {
-    path: "/chat",
-    name: "chat",
-    component: Chat,
     beforeEnter: requireAuth,
   },
 ];
