@@ -5,11 +5,9 @@ import Register from "../views/Register.vue";
 import Doktori from "../views/Doktori.vue";
 import DodajDoktora from "../views/DodajDoktora.vue";
 import Doktor from "../views/Doktor.vue";
-import Profile from "../views/Profile.vue";
 import NajboljiDoktori from "../views/NajboljiDoktori.vue";
 import DodajClanak from "../views/DodajClanak.vue";
 import Clanak from "../views/Clanak.vue";
-import Chat from "../views/Chat.vue";
 
 function requireAuth(to, from, next) {
   if (localStorage.getItem("usertoken") == null) {
