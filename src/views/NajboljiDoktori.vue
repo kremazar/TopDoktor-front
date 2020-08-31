@@ -9,7 +9,11 @@
         <router-link
           class="card-subtitle mb-2 text-muted btn btn-warning"
           :to="{ name: 'Doktor', params: { id: item.id }}"
-        >Prosjek ocjena: {{item.prosjek}}</router-link>
+        >
+          <p
+            style="text-overflow: '----';width: 145px;overflow: hidden; white-space: pre;"
+          >Prosjek ocjena: {{item.prosjek}}</p>
+        </router-link>
         <br />
         <br />
       </div>

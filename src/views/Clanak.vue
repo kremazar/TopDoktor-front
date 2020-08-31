@@ -3,18 +3,20 @@
     <input type="text" v-model="trazi" placeholder="Pretraži Članke" />
     <br />
     <br />
-    <div v-for="item in search" :key="item.id" class="card m-auto" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{item.naslov}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.opis}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.link}}</h6>
-        <br />
-        <br />
+    <div class="col-8 m-auto">
+      <div v-for="item in search" :key="item.id" class="card text-center mb-5">
+        <div class="card-header bg-secondary text-white">Članak</div>
+        <div class="card-body mb-5">
+          <h2 class="card-title">{{item.naslov}}</h2>
+          <p class="card-text">{{item.opis}}</p>
+          <a :href="item.link" class="btn btn-primary">Pregledaj cijeli članak</a>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
+   
 <script>
 import { Clanak } from "@/services";
 export default {

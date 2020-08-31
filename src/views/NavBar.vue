@@ -36,11 +36,6 @@
           </li>
           <li v-if="islogged" class="nav-item active">
             <a class="nav-link">
-              <router-link to="/profile">Profile</router-link>
-            </a>
-          </li>
-          <li v-if="islogged" class="nav-item active">
-            <a class="nav-link">
               <router-link to="/najbolji">Najbolji doktori</router-link>
             </a>
           </li>
