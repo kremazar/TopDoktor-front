@@ -74,7 +74,9 @@ export default {
             this.errors.push(error);
             console.error(error);
           })
-          .then(() => {});
+          .then(() => {
+            location.reload();
+          });
       }
     },
   },
