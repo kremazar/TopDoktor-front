@@ -1,21 +1,24 @@
 <template>
   <div>
     <h1>Najbolji doktori</h1>
-    <div v-for="item in najbolji" :key="item.id" class="card m-auto" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{item.ime}} {{item.prezime}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.specijalizacija}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.bolnica}}</h6>
-        <router-link
-          class="card-subtitle mb-2 text-muted btn btn-warning"
-          :to="{ name: 'Doktor', params: { id: item.id }}"
-        >
-          <p
-            style="text-overflow: '----';width: 145px;overflow: hidden; white-space: pre;"
-          >Prosjek ocjena: {{item.prosjek}}</p>
-        </router-link>
-        <br />
-        <br />
+    <br />
+    <br />
+    <div class="col-8 m-auto">
+      <div v-for="item in najbolji" :key="item.id" class="card text-center mb-5">
+        <div class="card-header bg-secondary text-white">Doktor</div>
+        <div class="card-body mb-5">
+          <h2 class="card-title">{{item.ime}} {{item.prezime}}</h2>
+          <p class="card-text">Specijalizacija: {{item.specijalizacija}}</p>
+          <p class="card-text">Bolnica: {{item.bolnica}}</p>
+          <router-link
+            class="card-subtitle mb-2 text-muted btn btn-warning"
+            :to="{ name: 'Doktor', params: { id: item.id }}"
+          >
+            <p
+              style="text-overflow: '----';width: 145px;overflow: hidden; white-space: pre;"
+            >Prosjek ocjena: {{item.prosjek}}</p>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
