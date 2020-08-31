@@ -3,16 +3,22 @@
     <input type="text" v-model="trazi" placeholder="pretraži doktore" />
     <br />
     <br />
-    <div v-for="item in search" :key="item.id" class="card m-auto" style="width: 18rem;">
-      <div class="card-body">
-        <h5 class="card-title">{{item.ime}} {{item.prezime}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.specijalizacija}}</h6>
-        <h6 class="card-subtitle mb-2 text-muted">{{item.bolnica}}</h6>
-        <router-link class="btn btn-primary" :to="{ name: 'Doktor', params: { id: item.id }}">Ocjeni</router-link>
-        <br />
-        <br />
-        <div v-if="user == admin">
-          <button class="btn btn-danger" @click="onDelete(item.id)">Delete</button>
+    <div class="col-8 m-auto">
+      <div v-for="item in search" :key="item.id" class="card text-center mb-5">
+        <div class="card-header bg-secondary text-white">Doktor</div>
+        <div class="card-body mb-5">
+          <h2 class="card-title">{{item.ime}} {{item.prezime}}</h2>
+          <p class="card-text">Specijalizacija: {{item.specijalizacija}}</p>
+          <p class="card-text">Bolnica: {{item.bolnica}}</p>
+          <router-link
+            class="btn btn-primary"
+            :to="{ name: 'Doktor', params: { id: item.id }}"
+          >Ocjeni</router-link>
+          <br />
+          <br />
+          <div v-if="user == admin">
+            <button class="btn btn-danger" @click="onDelete(item.id)">Delete</button>
+          </div>
         </div>
       </div>
     </div>

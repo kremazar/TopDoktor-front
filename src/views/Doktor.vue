@@ -30,7 +30,6 @@
             <div class="form-group">
               <label for="komentar">Komentar:</label>
               <input type="text" class="form-control" placeholder="komentar" v-model="sve.komentar" />
-              <input type="hidden" class="form-control" placeholder="user_id" v-model="sve.user_id" />
               <input type="hidden" class="form-control" placeholder="id" v-model="sve.id" />
             </div>
             <button v-on:click.prevent="ocjeni" class="btn btn-primary">Ocjeni</button>
@@ -63,18 +62,14 @@
 
 <script>
 import { Ocjeni, Ocjene, Doktor } from "@/services";
-import jwtDecode from "jwt-decode";
 export default {
   name: "Doktori",
   data() {
-    const token = localStorage.usertoken;
-    const decoded = jwtDecode(token);
     return {
       sve: {
         doktor_id: this.$route.params.id,
         komentar: "",
         ocjena: "",
-        user_id: decoded.id,
       },
       doktor: {},
       ocjene: {},
