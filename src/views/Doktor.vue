@@ -82,9 +82,9 @@ export default {
   },
   methods: {
     ocjeni: function () {
-      Ocjeni.getAll(this.sve).then(() => {
-        location.reload();
-      });
+      Ocjeni.getAll(this.sve);
+      this.$router.push("/doktori");
+      //location.reload();
     },
   },
   created() {
