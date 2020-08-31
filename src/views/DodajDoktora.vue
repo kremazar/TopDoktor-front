@@ -46,7 +46,7 @@
                 placeholder="bolnica"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
           </form>
           <div class="error" v-if="error">{{error.message}}</div>
         </div>
@@ -76,7 +76,7 @@ export default {
       /*  const path = "https://webdoktor.herokuapp.com/dodajDoktora"; */
       DodajDoktora.getAll(this.doktor)
         .then((res) => {
-          this.$router.push({ name: "About" });
+          this.$router.push({ name: "Doktori" });
           console.log(res.data);
         })
         .catch((error) => {

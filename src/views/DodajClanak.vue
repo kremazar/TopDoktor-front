@@ -36,7 +36,7 @@
                 placeholder="link"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
           </form>
           <div class="error" v-if="error">{{error.message}}</div>
         </div>
