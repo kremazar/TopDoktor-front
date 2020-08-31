@@ -72,7 +72,7 @@ const routes = [
   },
   {
     path: "/clanak",
-    name: "clanak",
+    name: "Clanak",
     component: Clanak,
     beforeEnter: requireAuth,
   },
