@@ -1,6 +1,6 @@
 <template>
   <div>
-    <input type="text" v-model="search" placeholder="Pretraži Članke" />
+    <input type="text" v-model="trazi" placeholder="Pretraži Članke" />
     <br />
     <br />
     <div class="col-8 m-auto">
