@@ -65,7 +65,7 @@ export default {
       /*  const path = "http://localhost:5000/dodajClanak"; */
       DodajClanak.getAll(this.clanak)
         .then((res) => {
-          this.$router.push({ name: "About" });
+          this.$router.push({ name: "Clanak" });
           console.log(res.data);
         })
         .catch((error) => {

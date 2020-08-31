@@ -82,17 +82,8 @@ export default {
   },
   methods: {
     ocjeni: function () {
-      Ocjeni.getAll(this.sve)
-        .then((res) => {
-          this.$router.push({ name: "About" });
-          console.log(res.data);
-        })
-        .catch((error) => {
-          // eslint-disable-next-line
-          console.error(error);
-        });
-
-      //location.reload();
+      Ocjeni.getAll(this.sve);
+      location.reload();
     },
   },
   created() {
