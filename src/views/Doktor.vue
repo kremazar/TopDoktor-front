@@ -83,7 +83,7 @@ export default {
   methods: {
     ocjeni: function () {
       Ocjeni.getAll(this.sve);
-      location.reload();
+      this.$router.push({ name: "Doktori" });
     },
   },
   created() {
