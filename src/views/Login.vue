@@ -27,7 +27,8 @@
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-
+          <p>admin: admin@unipu.hr lozinka: 123456</p>
+          <p>korisnik: kmazar@unipu.hr lozinka: 123456</p>
           <br />
           <br />
           <p class="btn btn-warning" v-for="error in errors" v-bind:key="error.id">{{ error }}</p>
